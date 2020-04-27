@@ -46,9 +46,7 @@ def get_model(input_shape, training, finetune):
         return Model(inputs=[inputs], outputs=y_pred)
 
 def train_kfold(idx, kfold, datapath, labelpath,  epochs, batch_size, lr, finetune):
-   # sess = tf.Session()
-   # K.set_session(sess)
-
+    
     model, y_func = get_model((*SIZE, 3), training=True, finetune=finetune)
     ada = Adam(lr=lr)
     model.compile(loss={'ctc': lambda y_true, y_pred: y_pred}, optimizer=ada)
